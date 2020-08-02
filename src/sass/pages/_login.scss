@@ -1,0 +1,50 @@
+.login-layout {
+
+    .form-layout {
+        width: 40%;
+        margin: 10rem auto;
+    }
+
+    .input-display {
+        margin-bottom: 2rem;
+    }
+    
+    .input-style {
+        display: block;
+        width: 90%;
+        height: 4rem;
+        font-size: 2rem;
+        padding: 5px 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        border: 1px solid rgba(128, 128, 128, 0.39) !important;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:invalid {
+            border: "1px solid red"
+        }
+    }
+
+    .label-style {
+        font-size: 2rem;
+    }
+
+    .submit-style {
+        border: 0;
+        text-transform: uppercase;
+        padding: 10px 20px;
+        background: rgba(121, 121, 121, 0.493);
+        border: 1px solid transparent;
+        border-radius: 5px;
+        outline: none;
+        cursor: pointer;
+
+        &:active {
+            color: $standard-white;
+            border: 1px solid rgba(0, 0, 0, 0.288);
+        }
+    }
+}
