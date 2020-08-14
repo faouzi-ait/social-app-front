@@ -5,15 +5,20 @@
         margin: 10rem auto;
     }
 
+    .form-layout-comment {
+        width: 90% !important;
+        margin: 2rem 0 !important;
+    }
+
     .input-display {
         margin-bottom: 2rem;
     }
-    
+
     .input-style {
         display: block;
         width: 90%;
-        height: 4rem;
-        font-size: 2rem;
+        height: 2.75rem;
+        font-size: 1.5rem;
         padding: 5px 10px;
         margin: 5px 0;
         border-radius: 5px;
@@ -47,4 +52,9 @@
             border: 1px solid rgba(0, 0, 0, 0.288);
         }
     }
+}
+
+.edit-layout {
+    margin: 0 auto !important;
+    width: 100% !important;
 }

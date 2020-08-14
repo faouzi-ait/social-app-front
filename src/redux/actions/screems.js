@@ -1,17 +1,25 @@
 import { SCREEMS } from "../types";
 
-const loadScreems = () => ({
+export const loadScreems = () => ({
   type: SCREEMS.LOAD,
 });
 
-const setScreems = (screems) => ({
+export const createScreem = (payload) => ({
+  type: SCREEMS.CREATE_SCREEM,
+  payload,
+});
+
+export const deleteScreem = (id) => ({
+  type: SCREEMS.DELETE_SCREEM,
+  id,
+});
+
+export const setScreems = (screems) => ({
   type: SCREEMS.LOAD_SUCCESS,
   screems,
 });
 
-const setError = (error) => ({
+export const setError = (error) => ({
   type: SCREEMS.LOAD_FAIL,
   error,
 });
-
-export { loadScreems, setScreems, setError };

@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Cards from "../utils/Cards";
 import Profile from "../utils/Profile";
 import { loadScreems } from "../../redux/actions/screems";
-import ImgFeed from "../../img/NewTux.svg";
 
 function Home() {
   dayjs.extend(relativeTime);
@@ -24,10 +23,14 @@ function Home() {
           screem.map((data, i) => (
             <Fragment key={i}>
               <Cards
-                ImgFeed={data.userImage ? data.userImage : ImgFeed}
+                ImgFeed={data.userImage}
                 name={data.user}
                 dob={dayjs(data.createdAt).fromNow()}
                 msg={data.body}
+                likes={data.likeCount}
+                comments={data.commentCount}
+                userHandle={data.userHandle}
+                id={data.screemId}
               />
             </Fragment>
           ))}

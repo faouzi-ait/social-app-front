@@ -14,12 +14,14 @@ export function* registerUser({ payload }) {
   yield put(setIsCreationActionError(""));
 
   const result = yield call(register, payload);
+
   if (result.status === 201) {
     yield put(setCreationConfirmation("Your account was successfully created"));
     yield delay(2000);
     yield put(setCreationConfirmation(""));
     window.location.href = "/login";
   } else {
+    console.log(result);
     if (result.error.response.data.email) {
       yield put(setIsCreationActionError(result.error.response.data.email));
       yield delay(2000);

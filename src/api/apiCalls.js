@@ -1,15 +1,18 @@
 import axios from "axios";
 import ApiClient from "./ApiClient";
-
-const TOKEN =
-  JSON.parse(localStorage.getItem("AIS_ADMIN_TOKEN")) || "NOT_LOGGED_IN";
+import { TOKEN } from "../js/jsUtils";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:5000/social-app-37d0e/us-central1/api",
 });
 
 axiosInstance.interceptors.request.use(
-  (request) => request,
+  (config) => {
+    if (TOKEN) {
+      config.headers["Authorization"] = `Bearer ${TOKEN}`;
+    }
+    return config;
+  },
   (error) => Promise.reject(error)
 );
 
@@ -19,7 +22,30 @@ axiosInstance.interceptors.response.use(
 );
 
 const apiClient = new ApiClient(axiosInstance);
-apiClient.setHeaders({ Authorization: `Bearer ${TOKEN}` });
+
+export async function authenticate(payload) {
+  try {
+    return await apiClient.post("/signin", payload);
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function fetch_user_profile() {
+  try {
+    return await apiClient.get("/profile");
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function register(payload) {
+  try {
+    return await apiClient.post("/signup", payload);
+  } catch (error) {
+    return { error };
+  }
+}
 
 export async function fetchScreems() {
   try {
@@ -30,9 +56,55 @@ export async function fetchScreems() {
   }
 }
 
-export async function authenticate(payload) {
+export async function uploadPicture(payload) {
   try {
-    return await apiClient.post("/signin", payload);
+    const response = await apiClient.post("/upload", payload);
+    return await response.data;
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function profileUpdate(payload) {
+  try {
+    const response = await apiClient.post("/profile", payload);
+    return await response.data;
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function likeScreemCall(id) {
+  try {
+    const response = await apiClient.get(`/screem/${id}/like`);
+    return await response.data;
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function unlikeScreemCall(id) {
+  try {
+    const response = await apiClient.get(`/screem/${id}/unlike`);
+    return await response.data;
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function deleteScreemCall({ id }) {
+  try {
+    const response = await apiClient.delete(`/screem/${id}/delete`);
+    return await response.data;
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function submitScreem(payload) {
+  try {
+    const response = await apiClient.post(`/screems`, payload);
+    return await response.data;
   } catch (error) {
     return { error };
   }
@@ -41,14 +113,6 @@ export async function authenticate(payload) {
 export async function logout() {
   try {
     return await apiClient.get("/signout");
-  } catch (error) {
-    return { error };
-  }
-}
-
-export async function register(payload) {
-  try {
-    return await apiClient.post("/signup", payload);
   } catch (error) {
     return { error };
   }

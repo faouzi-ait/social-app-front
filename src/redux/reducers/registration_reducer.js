@@ -6,7 +6,7 @@ const defaultState = {
   isCreationError: "",
 };
 
-export const register = (state = defaultState, action = {}) => {
+export const register = (state = defaultState, action) => {
   switch (action.type) {
     case USER.SET_IS_CREATING_USER:
       return { ...state, isCreatingUser: action.payload };

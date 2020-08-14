@@ -1,48 +1,176 @@
 .home-container {
-    display: grid;
-    grid-template-columns: 70% 30%;
-    padding: 2rem 15rem;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  padding: 2rem 15rem;
 
-    &--left {
-        margin-right: 2rem;
+  &--left {
+    margin-right: 2rem;
 
-        .cards {
-            display: flex;
-            height: 10rem;
-            margin-bottom: 1rem;
-            background: #fff;
-            border-radius: 3px;
-            box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.226);
+    .cards {
+      position: relative;
+      display: flex;
+      height: 10rem;
+      margin-bottom: 1.5rem;
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.226);
 
-            &--img img {
-                width: 11rem;
-                height: 100%;
-                margin-right: 1rem;
-            }
+      &--img img {
+        width: 11rem;
+        height: 100%;
+        margin-right: 1rem;
+      }
 
-            &--info {
-                display: grid;
-                grid-template-columns: 1fr;
-                align-items: center;
+      &--info {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
 
-                span {
-                    &:first-of-type {
-                        align-self: flex-end;
-                        color: #0099FF;
-                        font-size: 2rem;
-                    }
+        span {
+          &:first-of-type {
+            align-self: flex-end;
+            color: #0099ff;
+            font-size: 2rem;
+          }
 
-                    &:nth-child(2) {
-                        align-self: center;
-                        color: rgb(160, 160, 160);
-                    }
+          &:nth-child(2) {
+            align-self: center;
+            color: rgb(160, 160, 160);
+          }
 
-                    &:nth-child(3) {
-                        align-self: flex-start;
-                        color: rgba(0, 0, 0, 0.795);
-                    }
-                }
-            }
+          &:nth-child(3) {
+            align-self: flex-start;
+            color: rgba(0, 0, 0, 0.795);
+          }
         }
+      }
     }
+  }
+
+  .card--delete {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+
+  &--right {
+    .profile__container {
+      min-height: 21.3rem;
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.226);
+
+      &--image,
+      &--name,
+      &--date {
+        width: 100%;
+        text-align: center;
+        padding-top: 2rem;
+
+        img {
+          width: 18rem;
+          border-radius: 50%;
+        }
+      }
+
+      &--image {
+        position: relative;
+
+        .picture-btn {
+          position: absolute;
+          right: 1rem;
+        }
+      }
+
+      &--name {
+        font-size: 1.75rem;
+        color: #0099ff;
+        padding-top: 1rem;
+      }
+
+      &--date {
+        padding-top: 0.5rem;
+      }
+
+      .mb {
+        display: inline-block;
+        margin-bottom: 1.5rem !important;
+      }
+    }
+
+    .uploading-picture {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .profile__container--loading {
+      min-height: 21.3rem;
+      padding-top: 5rem;
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.226);
+
+      .loader {
+        margin: 0 auto;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        text-align: center;
+        -webkit-animation: spin 2s linear infinite;
+        /* Safari */
+        animation: spin 2s linear infinite;
+      }
+
+      /* Safari */
+      @-webkit-keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
+  }
+}
+
+.modal-btn {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1.5rem;
+}
+
+.modal-title-container {
+  text-align: center;
+}
+
+.modal-title {
+  margin: 0 auto;
+  font-size: 2rem;
+}
+
+.edit-details {
+  font-size: 1.5rem !important;
+}
+
+p > span {
+  font-size: 1rem !important;
+  color: #000 !important;
 }

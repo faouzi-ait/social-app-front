@@ -32,8 +32,6 @@ function Signup() {
     (state) => state.register
   );
 
-  console.log(registerConfirma);
-
   const onSubmit = ({
     firstname,
     lastname,

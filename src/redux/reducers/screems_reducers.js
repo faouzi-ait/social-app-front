@@ -13,6 +13,22 @@ export const screems_list = (state = {}, action) => {
   }
 };
 
+export const create_screems = (state = "", action) => {
+  switch (action.type) {
+    case SCREEMS.CREATE_SCREEM:
+    default:
+      return state;
+  }
+};
+
+export const delete_screem = (state = "", action) => {
+  switch (action.type) {
+    case SCREEMS.DELETE_SCREEM:
+    default:
+      return state;
+  }
+};
+
 export const screems_fail = (state = initialState, action) => {
   switch (action.type) {
     case SCREEMS.LOAD_FAIL:

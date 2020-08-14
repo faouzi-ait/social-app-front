@@ -14,10 +14,15 @@ export const login = (state = defaultState, action = {}) => {
         ...state,
         user: { ...state.user, ...action.payload },
       };
+    case AUTH.FETCH_USER_INFO:
+      return {
+        ...state,
+        profile: { ...state.profile, ...action.payload },
+      };
     case AUTH.SET_AUTHENTICATION_ERROR:
       return {
         ...state,
-        errors: action.payload
+        errors: action.payload,
       };
     case AUTH.SET_IS_AUTHENTICATING:
       return {

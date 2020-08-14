@@ -3,7 +3,7 @@
     justify-content: center;
     width: 100%;
     height: 5rem;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     background: #0099FF;
     box-shadow: 0 1px 7px 0px gray;
 
@@ -15,12 +15,15 @@
         text-transform: uppercase;
         text-decoration: none;
         color: $standard-white;
+        cursor: pointer;
+        user-select: none;
 
         @include transition();
     }
 
     .selected,
     a:hover {
-        background-color: rgb(91, 93, 255);
+        color: #000;
+        background-color: #fff;
     }
 }
