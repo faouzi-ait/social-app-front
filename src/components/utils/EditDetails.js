@@ -3,7 +3,6 @@ import { Formik, Form } from "formik";
 import { useSelector, useDispatch } from "react-redux";
 import { updateProfile } from "../../redux/actions/update_actions";
 import Input from "../form-components/inputs/Input";
-import { errorBorder } from "../../js/jsUtils";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -51,7 +50,6 @@ function FormDialog() {
           variant="outlined"
           color="primary"
           onClick={() => setOpen(true)}
-          maxWidth="false"
         >
           Edit your details
         </Button>
@@ -72,7 +70,7 @@ function FormDialog() {
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}
               >
-                {(props) => (
+                {(formik) => (
                   <Form autoComplete="off">
                     <div className="input-display">
                       <Input
@@ -80,9 +78,12 @@ function FormDialog() {
                         type="text"
                         label="Bio"
                         name="bio"
-                        style={errorBorder(props.touched.bio, props.errors.bio)}
                         labelStyle="label-style edit-details"
-                        className="input-style"
+                        className={`input-style ${
+                          formik.touched.bio && formik.errors.bio
+                            ? "field-error"
+                            : "field-valid"
+                        }`}
                       />
                     </div>
                     <div className="input-display">
@@ -91,12 +92,11 @@ function FormDialog() {
                         type="text"
                         label="Location"
                         name="location"
-                        style={errorBorder(
-                          props.touched.location,
-                          props.errors.location
-                        )}
-                        labelStyle="label-style edit-details"
-                        className="input-style"
+                        className={`input-style ${
+                          formik.touched.location && formik.errors.location
+                            ? "field-error"
+                            : "field-valid"
+                        }`}
                       />
                     </div>
                     <div className="input-display">
@@ -105,12 +105,11 @@ function FormDialog() {
                         type="text"
                         label="Website"
                         name="website"
-                        style={errorBorder(
-                          props.touched.website,
-                          props.errors.website
-                        )}
-                        labelStyle="label-style edit-details"
-                        className="input-style"
+                        className={`input-style ${
+                          formik.touched.website && formik.errors.website
+                            ? "field-error"
+                            : "field-valid"
+                        }`}
                       />
                     </div>
                     <DialogActions>

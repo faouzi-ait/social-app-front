@@ -1,12 +1,6 @@
 export const TOKEN =
   JSON.parse(localStorage.getItem("AIS_ADMIN_TOKEN")) || "NOT_LOGGED_IN";
 
-export const errorBorder = (touched, errors) => {
-  return {
-    border: touched && errors ? "1px solid red" : "1px solid black",
-  };
-};
-
 export function reloadPage() {
   // 1 - DOM Loading time
   let currentDocumentTimestamp = new Date(
@@ -22,6 +16,5 @@ export function reloadPage() {
 
   if (now > plusTenSec) {
     window.location.reload();
-  } else {
   }
 }

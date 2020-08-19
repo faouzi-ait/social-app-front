@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { createScreem } from "../../redux/actions/screems";
+import { createScreem } from "../../redux/actions/screems_actions";
 import { Formik, Form } from "formik";
-import { errorBorder } from "../../js/jsUtils";
 import { FiXCircle } from "react-icons/fi";
 import Input from "../form-components/inputs/Input";
 import * as Yup from "yup";
@@ -13,12 +12,11 @@ const CommentContainer = styled.div`
   position: absolute;
   width: 100vw;
   min-height: calc(100vh - 5rem);
-  background: lightgrey;
+  background: rgba(0, 0, 0, 0.8);
   justify-content: center;
   align-items: center;
   border: 1px solid grey;
   z-index: 9999;
-  opacity: 0.85;
 `;
 
 const CommentBox = styled.div`
@@ -82,36 +80,28 @@ function AddNewComment({ setOpen }) {
               validationSchema={validationSchema}
               onSubmit={onSubmit}
             >
-              {(props) => (
+              {(formik) => (
                 <Form autoComplete="off">
                   <div className="input-display">
                     <Input
                       control="input"
                       type="text"
                       name="body"
-                      style={errorBorder(props.touched.body, props.errors.body)}
                       labelStyle="label-style"
-                      className="input-style"
+                      className={`input-style ${
+                        formik.touched.body && formik.errors.body
+                          ? "field-error"
+                          : "field-valid"
+                      }`}
                     />
                   </div>
                   <button
                     type="submit"
-                    className="submit-style"
-                    style={{
-                      display: "inline-block",
-                      marginRight: "1rem",
-                    }}
+                    className="submit-style new-post-submit"
+                    disabled={formik.isSubmitting}
                   >
                     post
                   </button>
-                  <span
-                    style={{
-                      display: "inline-block",
-                      color: "red",
-                    }}
-                  >
-                    {/* {errors && "Login failed, please try again"} */}
-                  </span>
                 </Form>
               )}
             </Formik>

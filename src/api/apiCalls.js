@@ -3,11 +3,13 @@ import ApiClient from "./ApiClient";
 import { TOKEN } from "../js/jsUtils";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000/social-app-37d0e/us-central1/api",
+  // baseURL: "http://localhost:5000/social-app-37d0e/us-central1/api",
+  baseURL: "https://europe-west1-social-app-37d0e.cloudfunctions.net/api",
 });
 
 axiosInstance.interceptors.request.use(
   (config) => {
+    // CHECK FOR TOKEN EXPIRY HERE, REDIRECT TO HOME PAGE IF EXPIRED
     if (TOKEN) {
       config.headers["Authorization"] = `Bearer ${TOKEN}`;
     }
@@ -104,6 +106,24 @@ export async function deleteScreemCall({ id }) {
 export async function submitScreem(payload) {
   try {
     const response = await apiClient.post(`/screems`, payload);
+    return await response.data;
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function getScreemDetails({ id }) {
+  try {
+    const response = await apiClient.get(`/screem/${id}`);
+    return await response.data;
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function postCommentCall(id, payload) {
+  try {
+    const response = await apiClient.post(`/screem/${id}/comment`, payload);
     return await response.data;
   } catch (error) {
     return { error };

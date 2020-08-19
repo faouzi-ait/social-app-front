@@ -36,7 +36,7 @@ function App() {
     <Router>
       <NavBar />
       <Switch>
-        <ProtectedRoute exact path="/home" component={Home} />
+        <ProtectedRoute path="/home" component={Home} />
         <PrivateRoute exact path="/login" component={Login} />
         <PrivateRoute exact path="/signup" component={Signup} />
         <Redirect from="/" to="home" />

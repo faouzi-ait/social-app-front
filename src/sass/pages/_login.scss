@@ -22,14 +22,10 @@
         padding: 5px 10px;
         margin: 5px 0;
         border-radius: 5px;
-        border: 1px solid rgba(128, 128, 128, 0.39) !important;
+        border: 1px solid rgba(128, 128, 128, 0.39);
 
         &:focus {
             outline: none;
-        }
-
-        &:invalid {
-            border: "1px solid red"
         }
     }
 
@@ -57,4 +53,9 @@
 .edit-layout {
     margin: 0 auto !important;
     width: 100% !important;
+}
+
+.new-post-submit {
+    display: inline-block;
+    margin-right: 1rem;
 }

@@ -2,7 +2,6 @@ import React from "react";
 import { Formik, Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "../form-components/inputs/Input";
-import { errorBorder } from "../../js/jsUtils";
 import { authenticateAction } from "../../redux/actions/login_actions";
 import * as Yup from "yup";
 
@@ -38,7 +37,7 @@ function Login() {
           validationSchema={validationSchema}
           onSubmit={onSubmit}
         >
-          {(props) => (
+          {(formik) => (
             <Form autoComplete="off">
               <div className="input-display">
                 <Input
@@ -46,9 +45,12 @@ function Login() {
                   type="email"
                   label="Email"
                   name="email"
-                  style={errorBorder(props.touched.email, props.errors.email)}
                   labelStyle="label-style"
-                  className="input-style"
+                  className={`input-style ${
+                    formik.touched.email && formik.errors.email
+                      ? "field-error"
+                      : "field-valid"
+                  }`}
                 />
               </div>
 
@@ -58,12 +60,12 @@ function Login() {
                   type="password"
                   label="Password"
                   name="password"
-                  style={errorBorder(
-                    props.touched.password,
-                    props.errors.password
-                  )}
                   labelStyle="label-style"
-                  className="input-style"
+                  className={`input-style ${
+                    formik.touched.password && formik.errors.password
+                      ? "field-error"
+                      : "field-valid"
+                  }`}
                 />
               </div>
               <button
@@ -73,6 +75,7 @@ function Login() {
                   display: "inline-block",
                   marginRight: "1rem",
                 }}
+                disabled={!formik.isValid || formik.isSubmitting}
               >
                 Submit
               </button>

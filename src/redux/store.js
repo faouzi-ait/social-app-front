@@ -6,10 +6,10 @@ import { rootSaga } from "./sagas";
 import logger from "redux-logger";
 
 import {
-  screems_loading,
   screems_list,
-  screems_fail,
-  create_screems,
+  screems_details,
+  screems_loading,
+  screems_details_loading,
 } from "../redux/reducers/screems_reducers";
 import { login } from "../redux/reducers/login_reducer";
 import { register } from "../redux/reducers/registration_reducer";
@@ -25,8 +25,8 @@ import { token_reducer } from "../redux/reducers/token_reducer";
 const combinedReducers = combineReducers({
   screems_loading,
   screems_list,
-  screems_fail,
-  create_screems,
+  screems_details,
+  screems_details_loading,
   login,
   register,
   user_profile,
@@ -40,7 +40,7 @@ const combinedReducers = combineReducers({
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["login", "register"],
+  blacklist: ["login", "register", "screems_details"],
 };
 
 export const persistedReducer = persistReducer(persistConfig, combinedReducers);

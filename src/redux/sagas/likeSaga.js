@@ -6,7 +6,6 @@ import { likeScreemCall, unlikeScreemCall } from "../../api/apiCalls";
 export function* likeScreemFunction({ id }) {
   try {
     yield call(likeScreemCall, id);
-    yield delay(750);
     window.location.href = "/";
   } catch (error) {
     yield put(

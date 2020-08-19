@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form } from "formik";
 import Input from "../form-components/inputs/Input";
-import { errorBorder } from "../../js/jsUtils";
 import { createUserAction } from "../../redux/actions/registration_actions";
 import * as Yup from "yup";
 
@@ -71,7 +70,7 @@ function Signup() {
           validationSchema={validationSchema}
           onSubmit={onSubmit}
         >
-          {(props) => (
+          {(formik) => (
             <Form autoComplete="off">
               <div className="input-display">
                 <Input
@@ -80,12 +79,11 @@ function Signup() {
                   label="Name"
                   name="firstname"
                   labelStyle="label-style"
-                  errormessagestyle="label-style"
-                  className="input-style"
-                  style={errorBorder(
-                    props.touched.firstname,
-                    props.errors.firstname
-                  )}
+                  className={`input-style ${
+                    formik.touched.firstname && formik.errors.firstname
+                      ? "field-error"
+                      : "field-valid"
+                  }`}
                 />
               </div>
               <div className="input-display">
@@ -95,12 +93,11 @@ function Signup() {
                   label="Lastname"
                   name="lastname"
                   labelStyle="label-style"
-                  errormessagestyle="label-style"
-                  className="input-style"
-                  style={errorBorder(
-                    props.touched.lastname,
-                    props.errors.lastname
-                  )}
+                  className={`input-style ${
+                    formik.touched.lastname && formik.errors.lastname
+                      ? "field-error"
+                      : "field-valid"
+                  }`}
                 />
               </div>
               <div className="input-display">
@@ -110,9 +107,11 @@ function Signup() {
                   label="Email"
                   name="email"
                   labelStyle="label-style"
-                  errormessagestyle="label-style"
-                  className="input-style"
-                  style={errorBorder(props.touched.email, props.errors.email)}
+                  className={`input-style ${
+                    formik.touched.email && formik.errors.email
+                      ? "field-error"
+                      : "field-valid"
+                  }`}
                   disabled={isCreatingUser}
                 />
               </div>
@@ -124,12 +123,11 @@ function Signup() {
                   label="Password"
                   name="password"
                   labelStyle="label-style"
-                  errormessagestyle="label-style"
-                  className="input-style"
-                  style={errorBorder(
-                    props.touched.password,
-                    props.errors.password
-                  )}
+                  className={`input-style ${
+                    formik.touched.password && formik.errors.password
+                      ? "field-error"
+                      : "field-valid"
+                  }`}
                 />
               </div>
               <div className="input-display">
@@ -139,12 +137,12 @@ function Signup() {
                   label="Confirm Password"
                   name="passwordConfirm"
                   labelStyle="label-style"
-                  errormessagestyle="label-style"
-                  className="input-style"
-                  style={errorBorder(
-                    props.touched.passwordConfirm,
-                    props.errors.passwordConfirm
-                  )}
+                  className={`input-style ${
+                    formik.touched.passwordConfirm &&
+                    formik.errors.passwordConfirm
+                      ? "field-error"
+                      : "field-valid"
+                  }`}
                 />
               </div>
               <button

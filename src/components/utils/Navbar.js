@@ -6,7 +6,7 @@ import { FiLogOut } from "react-icons/fi";
 import { FiLogIn } from "react-icons/fi";
 import { FiUserPlus } from "react-icons/fi";
 import { FiPlus, FiMinus } from "react-icons/fi";
-import NewComment from "../utils/AddNewComment";
+import NewComment from "./AddNewPost";
 
 import Tippy from "@tippy.js/react";
 import "tippy.js/dist/tippy.css";
@@ -29,7 +29,7 @@ function Navbar() {
         {isAuthenticated ? (
           <>
             <Tippy content="Add a comment">
-              <a href={() => false} onClick={() => setOpen(!open)}>
+              <a href="# " onClick={() => setOpen(!open)}>
                 {!open ? <FiPlus /> : <FiMinus />}
               </a>
             </Tippy>
