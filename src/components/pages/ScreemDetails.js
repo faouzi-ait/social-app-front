@@ -82,8 +82,8 @@ function ScreemDetails() {
         <span>
           {user && user.firstname} {user && user.lastname}
         </span>
-        <span>Published: {screem && screem.createdAt.split("T")[0]}</span>
-        <span style={{ paddingTop: "1rem" }}>{screem && screem.body}</span>
+        <span>Published: {screem && screem?.createdAt.split("T")[0]}</span>
+        <span style={{ paddingTop: "1rem" }}>{screem && screem?.body}</span>
       </div>
     );
   };
