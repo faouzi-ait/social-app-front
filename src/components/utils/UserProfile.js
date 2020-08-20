@@ -35,7 +35,7 @@ function UserProfile({ profile }) {
 
   return (
     <div className="profile__container">
-      {!isPictureUploading ? (
+      {!isPictureUploading && imageUrl && firstname && createdAt ? (
         <div className="profile__container--image">
           <img src={imageUrl} alt="user" />
           <input
