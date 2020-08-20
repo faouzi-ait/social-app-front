@@ -1,6 +1,9 @@
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 import ApiClient from "./ApiClient";
 import { TOKEN } from "../js/jsUtils";
+import { store } from "../redux/store";
+import { logoutAction } from "../redux/actions/login_actions";
 
 const axiosInstance = axios.create({
   // baseURL: "http://localhost:5000/social-app-37d0e/us-central1/api",
@@ -9,7 +12,17 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    // CHECK FOR TOKEN EXPIRY HERE, REDIRECT TO HOME PAGE IF EXPIRED
+    /* 
+      DECODE TOKEN
+      IF TOKEN EXPIRED
+        DISPATCH USER LOGOUT
+        REDIRECT TO HOME PAGE
+        DISPATCH SET_AUTH TO FALSE
+      ELSE
+        ADD TOKEN TO HEADER
+        DISPATCH FECTH USER DETAILS
+        DISPATCH SET_AUTH TO TRUE
+    */
     if (TOKEN) {
       config.headers["Authorization"] = `Bearer ${TOKEN}`;
     }
