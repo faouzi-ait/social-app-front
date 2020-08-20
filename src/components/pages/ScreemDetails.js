@@ -41,7 +41,7 @@ function ScreemDetails() {
   const history = useHistory();
   const location = useLocation();
   const { screem, user, comments } = useSelector(
-    (state) => state?.screems_details?.screem
+    (state) => state.screems_details.screem
   );
   const isDetailsLoading = useSelector(
     (state) => state.screems_details_loading
@@ -82,8 +82,8 @@ function ScreemDetails() {
         <span>
           {user && user.firstname} {user && user.lastname}
         </span>
-        <span>Published: {screem && screem?.createdAt.split("T")[0]}</span>
-        <span style={{ paddingTop: "1rem" }}>{screem && screem?.body}</span>
+        <span>Published: {screem && screem.createdAt.split("T")[0]}</span>
+        <span style={{ paddingTop: "1rem" }}>{screem && screem.body}</span>
       </div>
     );
   };
@@ -122,7 +122,7 @@ function ScreemDetails() {
 
   return (
     <ScreemDetailLayout>
-      {!isDetailsLoading ? (
+      {!isDetailsLoading && screem && user ? (
         <>
           <ScreemDetailBoxContent>
             <ImageBox>
