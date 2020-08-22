@@ -1,4 +1,4 @@
-import { takeEvery, call, put } from "redux-saga/effects";
+import { takeEvery, call, put, delay } from "redux-saga/effects";
 import {
   isUploadProfilePictureUploading,
   uploadProfilePictureError,
@@ -15,6 +15,7 @@ export function* profilePictureUpload({ payload }) {
     yield put(uploadProfilePictureSuccess(upload));
     yield put(isUploadProfilePictureUploading(false));
     yield call(fetchUserInfo);
+    yield delay(800);
     window.location.href = "/";
   } catch (error) {
     yield put(uploadProfilePictureError(error));

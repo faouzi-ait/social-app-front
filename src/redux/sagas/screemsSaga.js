@@ -46,7 +46,7 @@ function* postCommentSaga({ id, comment }) {
   console.log(comment);
   try {
     yield call(postCommentCall, id, comment);
-    yield delay(250);
+    yield delay(800);
     window.location.href = "/";
   } catch (error) {
     yield put(setError(error.toString()));

@@ -14,7 +14,7 @@ export function* userProfileUpdate({ payload }) {
     yield call(profileUpdate, payload);
     yield put(updateProfileSuccess("Data successfully updated, thank you"));
     yield put(isProfileUpdating(false));
-    yield delay(500);
+    yield delay(800);
     window.location.href = "/";
   } catch (error) {
     yield put(updateProfileError(error));
