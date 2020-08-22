@@ -3,7 +3,7 @@ import createSagaMiddleware from "redux-saga";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { rootSaga } from "./sagas";
-import logger from "redux-logger";
+// import logger from "redux-logger";
 
 import {
   screems_list,
@@ -49,7 +49,7 @@ const sagaMiddleware = createSagaMiddleware();
 export const store = createStore(
   persistedReducer,
   compose(
-    applyMiddleware(logger, sagaMiddleware),
+    applyMiddleware(sagaMiddleware),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
