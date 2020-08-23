@@ -23,10 +23,9 @@ function Home() {
 
   return (
     <>
-      {" "}
       <div className="home-container">
         <div className="home-container--left">
-          {screem &&
+          {screem.length > 0 ?
             screem.map((data, i) => (
               <Fragment key={i}>
                 <Cards
@@ -40,7 +39,9 @@ function Home() {
                   id={data.screemId}
                 />
               </Fragment>
-            ))}
+            )) : <div style={{height: "50vh", textAlign: "center", fontSize: "2rem", fontStyle:"italic", paddingTop: "3rem"}}>
+                  <div>No posts to display, please create one using the + sign on the header bar</div>
+                </div>}
         </div>
         <Profile />
       </div>

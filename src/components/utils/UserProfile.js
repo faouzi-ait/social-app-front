@@ -33,8 +33,6 @@ function UserProfile({ profile }) {
     fileInput.click();
   };
 
-  console.log(imageUrl)
-
   return (
     <div className="profile__container">
       {!isPictureUploading && imageUrl && firstname && createdAt ? (
@@ -58,7 +56,7 @@ function UserProfile({ profile }) {
           <div className="image-loader"></div>
         </div>
       )}
-      <div className="profile__container--name">@{firstname}</div>
+      <div className="profile__container--name">@{firstname.split("@")[0]}</div>
       {bio && <div className="profile__container--date">{bio}</div>}
       {location && <div className="profile__container--date">{location}</div>}
       {website && <div className="profile__container--date">{website}</div>}
