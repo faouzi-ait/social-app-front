@@ -33,9 +33,11 @@ function UserProfile({ profile }) {
     fileInput.click();
   };
 
+  console.log(imageUrl)
+
   return (
     <div className="profile__container">
-      {imageUrl && firstname && createdAt && bio && location && website ? (
+      {!isPictureUploading && imageUrl && firstname && createdAt ? (
         <div className="profile__container--image">
           <img src={imageUrl} alt="user" />
           <input
