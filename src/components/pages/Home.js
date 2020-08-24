@@ -1,4 +1,5 @@
 import React, { useEffect, Fragment } from "react";
+import styled from "styled-components";
 
 import { Switch } from "react-router-dom";
 
@@ -21,11 +22,19 @@ function Home() {
     dispatch(loadScreems());
   }, [dispatch]);
 
+  const NoPostDisplay = styled.div`
+    height: 50vh;
+    text-align: center;
+    font-size: 2rem;
+    font-style: italic;
+    padding-top: 3rem;
+  `;
+
   return (
     <>
       <div className="home-container">
         <div className="home-container--left">
-          {screem.length > 0 ?
+          {screem.length > 0 ? (
             screem.map((data, i) => (
               <Fragment key={i}>
                 <Cards
@@ -39,9 +48,13 @@ function Home() {
                   id={data.screemId}
                 />
               </Fragment>
-            )) : <div style={{height: "50vh", textAlign: "center", fontSize: "2rem", fontStyle:"italic", paddingTop: "3rem"}}>
-                  <div>No posts to display, please create one using the + sign on the header bar</div>
-                </div>}
+            ))
+          ) : (
+            <NoPostDisplay>
+              No posts to display, please create one using the + sign on the
+              header bar
+            </NoPostDisplay>
+          )}
         </div>
         <Profile />
       </div>

@@ -1,9 +1,9 @@
 import axios from "axios";
-import jwt_decode from "jwt-decode";
 import ApiClient from "./ApiClient";
 import { TOKEN } from "../js/jsUtils";
-import { store } from "../redux/store";
-import { logoutAction } from "../redux/actions/login_actions";
+// import jwt_decode from "jwt-decode";
+// import { store } from "../redux/store";
+// import { logoutAction } from "../redux/actions/login_actions";
 
 const axiosInstance = axios.create({
   // baseURL: "http://localhost:5000/social-app-37d0e/us-central1/api",
@@ -12,20 +12,20 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    /* 
-      DECODE TOKEN
-      IF TOKEN EXPIRED
-        DISPATCH USER LOGOUT
-        REDIRECT TO HOME PAGE
-        DISPATCH SET_AUTH TO FALSE
-      ELSE
-        ADD TOKEN TO HEADER
-        DISPATCH FECTH USER DETAILS
-        DISPATCH SET_AUTH TO TRUE
-    */
     if (TOKEN) {
       config.headers["Authorization"] = `Bearer ${TOKEN}`;
     }
+    /* 
+      DECODE TOKEN
+      IF TOKEN EXPIRED
+        DISPATCH USER LOGOUT ACTION
+        DISPATCH SET_AUTH TO FALSE
+        REDIRECT TO HOME PAGE
+      ELSE
+        ADD TOKEN TO AUTHORIZATION HEADER
+        DISPATCH FECTH USER DETAILS
+        DISPATCH SET_AUTH TO TRUE
+    */
     return config;
   },
   (error) => Promise.reject(error)

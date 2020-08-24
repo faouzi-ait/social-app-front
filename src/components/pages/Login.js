@@ -75,7 +75,7 @@ function Login() {
                   display: "inline-block",
                   marginRight: "1rem",
                 }}
-                disabled={!formik.isValid || formik.isSubmitting}
+                disabled={formik.isSubmitting}
               >
                 Submit
               </button>
