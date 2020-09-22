@@ -34,7 +34,7 @@ function Home() {
     <>
       <div className="home-container">
         <div className="home-container--left">
-          {screem.length > 0 ? (
+          {screem && screem.length > 0 ? (
             screem.map((data, i) => (
               <Fragment key={i}>
                 <Cards
