@@ -40,12 +40,10 @@ function ScreemDetails() {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  const { screem, user, comments } = useSelector(
+  const { user, comments } = useSelector(
     (state) => state.screems_details.screem
   );
-  const state = useSelector(
-    (state) => state.screems_details
-  );
+  const state = useSelector((state) => state.screems_details);
 
   const isDetailsLoading = useSelector(
     (state) => state.screems_details_loading
@@ -128,7 +126,7 @@ function ScreemDetails() {
 
   return (
     <ScreemDetailLayout>
-      {!isDetailsLoading && screem !== undefined && user && comments ? (
+      {!isDetailsLoading && user && comments ? (
         <>
           <ScreemDetailBoxContent>
             <ImageBox>
