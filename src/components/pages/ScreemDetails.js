@@ -1,38 +1,38 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
 
-import { Formik, Form } from "formik";
-import Input from "../form-components/inputs/Input";
-import * as Yup from "yup";
+import { Formik, Form } from 'formik';
+import Input from '../form-components/inputs/Input';
+import * as Yup from 'yup';
 
-import { useHistory, useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   getScreemDetails,
   setScreemDetailsReset,
   postComment,
-} from "../../redux/actions/screems_actions";
-import ScreemDetailLayout from "./ScreemDetailLayout";
-import CancelIcon from "@material-ui/icons/Cancel";
+} from '../../redux/actions/screems_actions';
+import ScreemDetailLayout from './ScreemDetailLayout';
+import CancelIcon from '@material-ui/icons/Cancel';
 
-import { makeStyles } from "@material-ui/core/styles";
-import LinearProgress from "@material-ui/core/LinearProgress";
+import { makeStyles } from '@material-ui/core/styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    "& > * + *": {
+    width: '100%',
+    '& > * + *': {
       marginTop: theme.spacing(2),
     },
   },
 }));
 
 const initialValues = {
-  Body: "",
+  Body: '',
 };
 
 const validationSchema = Yup.object({
-  Body: Yup.string().required("Body is required").min(2),
+  Body: Yup.string().required('Body is required').min(2),
 });
 
 function ScreemDetails() {
@@ -82,15 +82,15 @@ function ScreemDetails() {
         <span>
           {user && user.firstname} {user && user.lastname}
         </span>
-        <span>Published: {screem && screem.createdAt.split("T")[0]}</span>
-        <span style={{ paddingTop: "1rem" }}>{screem && screem.body}</span>
+        <span>Published: {screem && screem.createdAt.split('T')[0]}</span>
+        <span style={{ paddingTop: '1rem' }}>{screem && screem.body}</span>
       </div>
     );
   };
 
   const ScreemComments = ({ comments }) => {
     return (
-      <div style={{ padding: "0 2rem" }}>
+      <div style={{ padding: '0 2rem' }}>
         <div className="screem_comments">
           {comments &&
             comments.map((comment, i) => (
@@ -102,8 +102,8 @@ function ScreemDetails() {
                 />
                 <div className="screem-details" key={i}>
                   <span>{comment.body}</span>
-                  <span style={{ fontSize: "1rem" }}>
-                    Posted on the: {comment.createdAt.split("T")[0]}
+                  <span style={{ fontSize: '1rem' }}>
+                    Posted on the: {comment.createdAt.split('T')[0]}
                   </span>
                 </div>
               </div>
@@ -129,11 +129,13 @@ function ScreemDetails() {
               <img src={user?.imageUrl} alt="user" />
             </ImageBox>
             <UserContentData>
-              <ScreemInfo
-                user={user}
-                screem={screem}
-                card_style="cards--info"
-              />
+              {screem && (
+                <ScreemInfo
+                  user={user}
+                  screem={screem}
+                  card_style="cards--info"
+                />
+              )}
             </UserContentData>
             <span className="close-btn" onClick={() => history.push(`/home`)}>
               <CancelIcon fontSize="large" />
@@ -144,8 +146,7 @@ function ScreemDetails() {
               <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={onSubmit}
-              >
+                onSubmit={onSubmit}>
                 {(formik) => (
                   <Form autoComplete="off">
                     <div className="new__comment">
@@ -155,16 +156,15 @@ function ScreemDetails() {
                         name="Body"
                         className={`input-style new__comment--input ${
                           formik.touched.Body && formik.errors.Body
-                            ? "field-error"
-                            : "field-valid"
+                            ? 'field-error'
+                            : 'field-valid'
                         }`}
                         placeholder="Post a comment here"
                       />
                       <button
                         type="submit"
                         className="new__comment--submit"
-                        disabled={formik.isSubmitting}
-                      >
+                        disabled={formik.isSubmitting}>
                         Submit
                       </button>
                     </div>
