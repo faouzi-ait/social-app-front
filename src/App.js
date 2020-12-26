@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import jwt_decode from 'jwt-decode';
 import {
   BrowserRouter as Router,
   Route,
@@ -29,7 +30,9 @@ function App() {
     document.title = 'Social Times';
     const token = localStorage.getItem('AIS_ADMIN_TOKEN');
 
-    console.log(token)
+    const decodedUser = jwt_decode(token);
+    // console.log(decodedUser);
+    console.log(decodedUser.slice(1, -1));
 
     if (token) {
       dispatch(setIsUserAuthenticated(true));
