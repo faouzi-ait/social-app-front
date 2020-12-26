@@ -40,7 +40,7 @@ function ScreemDetails() {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  const { user, comments } = useSelector(
+  const { screem, user, comments } = useSelector(
     (state) => state.screems_details.screem
   );
   const state = useSelector((state) => state.screems_details);
@@ -133,13 +133,11 @@ function ScreemDetails() {
               <img src={user?.imageUrl} alt="user" />
             </ImageBox>
             <UserContentData>
-              {screem && (
-                <ScreemInfo
-                  user={user}
-                  screem={screem}
-                  card_style="cards--info"
-                />
-              )}
+              {/* <ScreemInfo
+                user={user}
+                screem={screem}
+                card_style="cards--info"
+              /> */}
             </UserContentData>
             <span className="close-btn" onClick={() => history.push(`/home`)}>
               <CancelIcon fontSize="large" />
