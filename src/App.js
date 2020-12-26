@@ -8,7 +8,10 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
-import { setIsUserAuthenticated } from './redux/actions/login_actions';
+import {
+  setIsUserAuthenticated,
+  logoutAction,
+} from './redux/actions/login_actions';
 import { getProfileAction } from './redux/actions/profile_actions';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
@@ -35,14 +38,13 @@ function App() {
       dispatch(setIsUserAuthenticated(true));
       dispatch(getProfileAction());
 
-      console.log(token.slice(1, -1));
-
       const formattedToken = token.slice(1, -1);
       const decodedUser = jwt_decode(formattedToken);
 
-      console.log('ISSUE AT:     ', decodedUser.iat);
-      console.log('EXPIRED AT:   ', decodedUser.exp);
-      console.log('CURRENT TIME: ', Date.parse(new Date()));
+      if (decodedUser.exp > Date.parse(new Date())) {
+        dispatch(logoutAction());
+        alert('Your session timed out, please login again');
+      }
     }
   }, [dispatch]);
 
