@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import jwt_decode from 'jwt-decode';
+import history from './history';
 import {
   BrowserRouter as Router,
   Route,
@@ -39,8 +40,8 @@ function App() {
       const formattedToken = token.slice(1, -1);
       const decodedUser = jwt_decode(formattedToken);
 
-      console.log('ISSUE AT: ', decodedUser.iat);
-      console.log('EXPIRED AT: ', decodedUser.exp);
+      console.log('ISSUE AT:     ', decodedUser.iat);
+      console.log('EXPIRED AT:   ', decodedUser.exp);
       console.log('CURRENT TIME: ', Date.parse(new Date()));
     }
   }, [dispatch]);
