@@ -35,8 +35,9 @@ function App() {
       dispatch(getProfileAction());
 
       const decodedUser = jwt_decode(token);
-      const formattedToken = decodedUser.slice(1, -1);
-      console.log(formattedToken);
+      console.log(decodedUser.slice(1, -1));
+
+      
     }
   }, [dispatch]);
 
