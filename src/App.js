@@ -34,10 +34,14 @@ function App() {
       dispatch(setIsUserAuthenticated(true));
       dispatch(getProfileAction());
 
-      const decodedUser = jwt_decode(token);
-      console.log(decodedUser.slice(1, -1));
+      console.log(token.slice(1, -1));
+    
+      const formattedToken = token.slice(1, -1);
+      const decodedUser = jwt_decode(formattedToken);
 
-      
+      console.log(decodedUser)
+
+
     }
   }, [dispatch]);
 
