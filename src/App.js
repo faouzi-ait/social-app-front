@@ -35,13 +35,13 @@ function App() {
       dispatch(getProfileAction());
 
       console.log(token.slice(1, -1));
-    
+
       const formattedToken = token.slice(1, -1);
       const decodedUser = jwt_decode(formattedToken);
 
-      console.log(decodedUser)
-
-
+      console.log('ISSUE AT: ', decodedUser.iat);
+      console.log('EXPIRED AT: ', decodedUser.exp);
+      console.log('CURRENT TIME: ', Date.parse(new Date()));
     }
   }, [dispatch]);
 
