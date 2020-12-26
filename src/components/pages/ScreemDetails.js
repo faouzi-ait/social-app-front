@@ -122,7 +122,7 @@ function ScreemDetails() {
 
   return (
     <ScreemDetailLayout>
-      {!isDetailsLoading && user && comments ? (
+      {!isDetailsLoading && screem && user && comments ? (
         <>
           <ScreemDetailBoxContent>
             <ImageBox>
