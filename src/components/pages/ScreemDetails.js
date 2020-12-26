@@ -41,9 +41,11 @@ function ScreemDetails() {
   const history = useHistory();
   const location = useLocation();
   const { screem, user, comments } = useSelector(
-    (state) => state.screems_details.screem
+    (state) => state.screems_details
   );
-  const state = useSelector((state) => state.screems_details);
+  const state = useSelector(
+    (state) => state.screems_details
+  );
 
   const isDetailsLoading = useSelector(
     (state) => state.screems_details_loading
@@ -126,18 +128,20 @@ function ScreemDetails() {
 
   return (
     <ScreemDetailLayout>
-      {!isDetailsLoading && user && comments ? (
+      {!isDetailsLoading && screem && user && comments ? (
         <>
           <ScreemDetailBoxContent>
             <ImageBox>
               <img src={user?.imageUrl} alt="user" />
             </ImageBox>
             <UserContentData>
-              {/* <ScreemInfo
-                user={user}
-                screem={screem}
-                card_style="cards--info"
-              /> */}
+              {screem && (
+                <ScreemInfo
+                  user={user}
+                  screem={screem}
+                  card_style="cards--info"
+                />
+              )}
             </UserContentData>
             <span className="close-btn" onClick={() => history.push(`/home`)}>
               <CancelIcon fontSize="large" />
