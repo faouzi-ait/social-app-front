@@ -43,9 +43,15 @@ function ScreemDetails() {
   const { screem, user, comments } = useSelector(
     (state) => state.screems_details.screem
   );
+  const state = useSelector(
+    (state) => state.screems_details
+  );
+
   const isDetailsLoading = useSelector(
     (state) => state.screems_details_loading
   );
+
+  console.log(state);
 
   useEffect(() => {
     dispatch(getScreemDetails(location.state));
