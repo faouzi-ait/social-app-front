@@ -30,13 +30,13 @@ function App() {
     document.title = 'Social Times';
     const token = localStorage.getItem('AIS_ADMIN_TOKEN');
 
-    const decodedUser = jwt_decode(token);
-    // console.log(decodedUser);
-    console.log(decodedUser.slice(1, -1));
-
     if (token) {
       dispatch(setIsUserAuthenticated(true));
       dispatch(getProfileAction());
+
+      const decodedUser = jwt_decode(token);
+      const formattedToken = decodedUser.slice(1, -1);
+      console.log(formattedToken);
     }
   }, [dispatch]);
 
