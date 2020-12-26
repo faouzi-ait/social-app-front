@@ -41,10 +41,10 @@ function ScreemDetails() {
   const history = useHistory();
   const location = useLocation();
   const { screem, user, comments } = useSelector(
-    (state) => state.screems_details
+    (state) => state.screems_details.screem
   );
   const state = useSelector(
-    (state) => state.screems_details
+    (state) => state
   );
 
   const isDetailsLoading = useSelector(
