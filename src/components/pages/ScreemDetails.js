@@ -7,6 +7,8 @@ import * as Yup from 'yup';
 
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import jwt_decode from 'jwt-decode';
+import { logoutAction } from '../../redux/actions/login_actions';
 import {
   getScreemDetails,
   setScreemDetailsReset,
