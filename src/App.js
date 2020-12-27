@@ -34,7 +34,7 @@ function App() {
       const formattedToken = token.slice(1, -1);
       const decodedUser = jwt_decode(formattedToken);
 
-      if (decodedUser.exp > Date.parse(new Date())) {
+      if (decodedUser.exp < Date.parse(new Date())) {
         dispatch(logoutAction());
         alert('Your session timed out, please login again');
       }
