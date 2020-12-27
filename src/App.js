@@ -27,8 +27,17 @@ import './sass/index.scss';
 function App() {
   const dispatch = useDispatch();
 
-  // const { token_reducer } = useSelector((state) => state);
-  // console.log(token_reducer);
+  useEffect(() => {
+    const token = localStorage.getItem('AIS_ADMIN_TOKEN');
+
+    const formattedToken = token.slice(1, -1);
+    const decodedUser = jwt_decode(formattedToken);
+
+    if (decodedUser.exp > Date.parse(new Date())) {
+      dispatch(logoutAction());
+      alert('Your session timed out, please login again');
+    }
+  }, []);
 
   useEffect(() => {
     document.title = 'Social Times';
@@ -37,14 +46,6 @@ function App() {
     if (token) {
       dispatch(setIsUserAuthenticated(true));
       dispatch(getProfileAction());
-
-      const formattedToken = token.slice(1, -1);
-      const decodedUser = jwt_decode(formattedToken);
-
-      if (decodedUser.exp > Date.parse(new Date())) {
-        dispatch(logoutAction());
-        alert('Your session timed out, please login again');
-      }
     }
   }, [dispatch]);
 
