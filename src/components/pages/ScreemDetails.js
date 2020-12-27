@@ -7,8 +7,8 @@ import * as Yup from 'yup';
 
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import jwt_decode from 'jwt-decode';
-import { logoutAction } from '../../redux/actions/login_actions';
+// import jwt_decode from 'jwt-decode';
+// import { logoutAction } from '../../redux/actions/login_actions';
 import {
   getScreemDetails,
   setScreemDetailsReset,
@@ -50,19 +50,19 @@ function ScreemDetails() {
     (state) => state.screems_details_loading
   );
 
-  useEffect(() => {
-    const token = localStorage.getItem('AIS_ADMIN_TOKEN');
+  // useEffect(() => {
+  //   const token = localStorage.getItem('AIS_ADMIN_TOKEN');
 
-    if (token) {
-      const formattedToken = token.slice(1, -1);
-      const decodedUser = jwt_decode(formattedToken);
+  //   if (token) {
+  //     const formattedToken = token.slice(1, -1);
+  //     const decodedUser = jwt_decode(formattedToken);
 
-      if (decodedUser.exp < Date.parse(new Date())) {
-        dispatch(logoutAction());
-        alert('Your session timed out, please login again');
-      }
-    }
-  }, []);
+  //     if (decodedUser.exp > Date.parse(new Date())) {
+  //       dispatch(logoutAction());
+  //       alert('Your session timed out, please login again');
+  //     }
+  //   }
+  // }, []);
 
   useEffect(() => {
     dispatch(getScreemDetails(location.state));

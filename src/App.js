@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import jwt_decode from 'jwt-decode';
-import history from './history';
+// import jwt_decode from 'jwt-decode';
+// import history from './history';
 import {
   BrowserRouter as Router,
   Route,
@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom';
 import {
   setIsUserAuthenticated,
-  logoutAction,
+  // logoutAction,
 } from './redux/actions/login_actions';
 import { getProfileAction } from './redux/actions/profile_actions';
 import Home from './components/pages/Home';
@@ -27,19 +27,19 @@ import './sass/index.scss';
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const token = localStorage.getItem('AIS_ADMIN_TOKEN');
+  // useEffect(() => {
+  //   const token = localStorage.getItem('AIS_ADMIN_TOKEN');
 
-    if (token) {
-      const formattedToken = token.slice(1, -1);
-      const decodedUser = jwt_decode(formattedToken);
+  //   if (token) {
+  //     const formattedToken = token.slice(1, -1);
+  //     const decodedUser = jwt_decode(formattedToken);
 
-      if (decodedUser.exp < Date.parse(new Date())) {
-        dispatch(logoutAction());
-        alert('Your session timed out, please login again');
-      }
-    }
-  }, []);
+  //     if (decodedUser.exp < Date.parse(new Date())) {
+  //       dispatch(logoutAction());
+  //       alert('Your session timed out, please login again');
+  //     }
+  //   }
+  // }, []);
 
   useEffect(() => {
     document.title = 'Social Times';
